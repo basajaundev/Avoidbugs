@@ -9,6 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,10 +18,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerEditBookEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 
@@ -154,6 +152,18 @@ public class PlayerEvents implements Listener {
 
                 getConfig().sendItemRemoved(player, item);
             }
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onShear(PlayerShearEntityEvent e) {
+        if (e.getEntity().getType() == EntityType.MUSHROOM_COW) {
+            if (e.getPlayer().hasCooldown(Material.SHEARS)) {
+                e.setCancelled(true);
+                return;
+            }
+
+            e.getPlayer().setCooldown(Material.SHEARS, 2);
         }
     }
 

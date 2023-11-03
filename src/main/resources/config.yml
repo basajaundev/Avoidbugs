@@ -1,0 +1,49 @@
+# Avoidbugs configuration file
+# Report bugs and suggest features at:
+# https://github.com/basajaundev/Avoidbugs
+
+# WARNING: Do not set the values too low, or you will end up making a lot of players lose their valuable items!!!
+# Maximum accepted item's NBT data size in bytes. Avoid using values lower than 4096 as it's higher than a shulkerbox filled with player heads.
+maxItemDataSize: 4096
+# Maximum amount of pages that books can have. Minecraft's limit is 100 but various hacks and exploits are able to bypass it.
+# Please don't set it too low as some players like to write long stories that are not meant to make any harm.
+maxBookPages: 50
+# What to do with item exceeding limit.
+#   clearMeta - will remove all the item's meta/NBT data, basically turns it back into a safe state
+#   remove    - removes the item completely
+mode: "clearmeta"
+
+features:
+  # Will trim edited book if it exceeds the page limit.
+  bookTrimming: true
+  # Master switch for scanning items.
+  itemScanning: true
+  # RECOMMENDED. Will scan players' inventories on join. This is the minimal (and most effective) layer of protection as it allows book/shulker banned players to join.
+  scanOnJoin: true
+  # Will scan items when dropped (and remove if exceed limit)
+  scanOnDrop: true
+  # WIll scan items when picked up (and remove if exceed limit)
+  scanOnPickup: true
+  # Will scan the item in player's hand on click
+  scanOnInteract: true
+  # Will scan books after editing them.
+  scanOnBookEdit: true
+  # EXPERIMENTAL!!! This scanner is buggy, and it's still under construction. Avoid using as it's not effective and may cause loss of valuable items.
+  scanOnInventoryClick: false
+
+WhenTryingToDupe:
+  Command: "ban {PLAYER} &cMaximum warnings received, if you think that this is a mistake, please contact the staff team. &a{X}x, {Y}y, {Z}z"
+  MaxWarnings: 3
+  StrikeLightning: true
+
+messages:
+  noPermission: "&4Access denied."
+  uncrecognizedOption: "&4Unrecognized option '{option}'"
+  size: "&6Size of &2&l{itemName}&r: &d{size}b"
+  notHolding: "&cYou're not holding any item!"
+  itemRemoved: "&4{itemName} &cor its data was removed because it was a potentially dangerous item."
+  itemsRemoved: "&4{count} &citems or their data was removed from your inventory because they could make you not able to join."
+  cantDrop: "&cYou can't drop &4{itemName} &cbesaue it contains potentially dangerous data."
+  cantPickup: "&cThe &4{itemName} &cyou tried to pickup or its data was removed besaue it contains potentially dangerous data."
+  bookTrimmed: "&cYour book was trimmed because it exceeded the &4{max} &cpage limit."
+  tryingToDupe: "We detected a possible bug abuse, please avoid doing what are you doing. &c{COUNTDOWN}"

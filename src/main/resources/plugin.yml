@@ -1,0 +1,12 @@
+name: Avoidbugs
+version: '${project.version}'
+main: com.github.basajaundev.avoidbugs.Avoidbugs
+api-version: '1.20'
+authors: [GallaZ]
+commands:
+  avoidbugs:
+    description: Main ItemLimiter command
+    usage: /<command> [reload]
+  datasize:
+    description: Gets size in bytes of the held item
+    usage: /<command>
